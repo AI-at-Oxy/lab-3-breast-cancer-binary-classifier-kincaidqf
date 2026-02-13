@@ -49,8 +49,9 @@ def forward(x, w, b):
         scalar prediction in (0, 1)
     """
     z = torch.dot(w, x) + b
-    y_hat = None  # TODO: apply sigmoid to z
-    raise NotImplementedError("TODO: implement forward pass")
+    y_hat = sigmoid(z)
+    
+    return y_hat
 
 
 def compute_loss(y, y_hat):
