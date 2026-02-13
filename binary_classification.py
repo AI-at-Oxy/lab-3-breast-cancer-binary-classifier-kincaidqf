@@ -91,14 +91,14 @@ def compute_gradients(x, y, y_hat):
         dw: (n,) gradient for weights
         db: scalar gradient for bias
     """
-    error = None  # TODO: compute error = ŷ - y
-    sigmoid_deriv = None  # TODO: compute sigmoid derivative = ŷ(1 - ŷ)
-    delta = None  # TODO: compute δ = error × sigmoid_deriv
+    error = y_hat - y  # TODO: compute error = ŷ - y
+    sigmoid_deriv = y_hat * (1 - y_hat)  # TODO: compute sigmoid derivative = ŷ(1 - ŷ)
+    delta = error * sigmoid_deriv  # TODO: compute δ = error × sigmoid_deriv
 
-    dw = None  # TODO: compute ∂L/∂w = δ × x
-    db = None  # TODO: compute ∂L/∂b = δ
+    dw = delta * x  # TODO: compute ∂L/∂w = δ × x
+    db = delta  # TODO: compute ∂L/∂b = δ
 
-    raise NotImplementedError("TODO: implement compute_gradients")
+    return dw, db
 
 
 # =============================================================================
@@ -166,17 +166,17 @@ def train(X_train, y_train, alpha=0.01, n_epochs=100, verbose=True):
             y_i = y_train[i]
             
             # Forward pass: compute prediction for this sample
-            y_hat = None  # TODO: call forward()
+            y_hat = forward(x_i, w, b)  # call forward()
 
             # Compute loss
             epoch_loss += compute_loss(y_i, y_hat).item()
 
             # Compute gradients
-            dw, db = None, None  # TODO: call compute_gradients()
+            dw, db = compute_gradients(x_i, y_i, y_hat)
 
             # Update parameters using gradient descent
-            w = None  # TODO: update w
-            b = None  # TODO: update b
+            w = w - alpha * dw
+            b = b - alpha * db
         
         avg_loss = epoch_loss / len(y_train)
         losses.append(avg_loss)
