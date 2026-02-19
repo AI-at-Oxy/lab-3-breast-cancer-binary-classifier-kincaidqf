@@ -49,3 +49,20 @@ if __name__ == "__main__":
     print(f"Training accuracy: {train_acc:.4f}")
     print(f"Test accuracy: {test_acc:.4f}")
 
+'''
+KNN: 
+- Training accuracy: 0.9802
+- Test accuracy: 0.9474
+
+Binary Classifier:
+- Training accuracy 0.9868
+- Test accuracy: 0.9912
+
+For my tests the binary classifier actually performed better than the KNN classifier. I was definitely
+surprised that my implemented-from-scratch model performed better than the scikit-learn model. However,
+with such a small batch of training data, my guess is that most 'stock' models (whether implemented from
+scratch or not) will perform very similarly. Additionally with the type of data that is being observed, 
+KNN is probably not the best model to use. It relies heavily on the difference between samples, which with
+relatively few features and a small dataset, there won't be that many distinct samples to compare to. 
+
+'''
